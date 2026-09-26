@@ -246,12 +246,8 @@ services:
       - zeek_data:/opt/pocketsoc-ng/data
     environment:
         ZEEKHOST: ${HOST_HOSTNAME}
-    #privileged: true
-    cap_add:
-      - NET_ADMIN
-#    networks:
-#      - mirror
-
+    ports:
+      - 10000:10000/udp
 ## "Internal"
 
 ## Client
