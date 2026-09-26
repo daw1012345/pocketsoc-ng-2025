@@ -2,6 +2,9 @@
 ##!
 ##! This file will not be overwritten when upgrading or reinstalling!
 
+redef Log::default_logdir = "/usr/local/zeek/logs/current";
+redef ignore_checksums = T;
+
 # Installation-wide salt value that is used in some digest hashes, e.g., for
 # the creation of file IDs. Please change this to a hard to guess value.
 redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
@@ -10,7 +13,6 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 @load misc/loaded-scripts
 
 # Apply the default tuning scripts for common tuning settings.
-@load tuning/defaults
 
 # Estimate and log capture loss.
 @load misc/capture-loss
@@ -76,7 +78,7 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 @load protocols/ssh/interesting-hostnames
 
 # Detect SQL injection attacks.
-@load protocols/http/detect-sqli
+#@load protocols/http/detect-sqli
 
 #### Network File Handling ####
 
@@ -107,9 +109,6 @@ redef digest_salt = "BskpI6x4Kb2GLLbaH543nu4jhNvi6tGZdjFcUVwLcYQ";
 ###########################
 # Additions after this line
 ###########################
-
-# POCKETSOC-NG SPECIFIC SETUP NOT FOR PRODUCTION
-redef Weird::ignore_hosts += {[172.18.0.2,"active_connection_reuse"]};
 
 # Activate JSON logs
 @load policy/tuning/json-logs.zeek
